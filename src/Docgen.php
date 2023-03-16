@@ -190,17 +190,21 @@ final class Docgen
         return $this->docBlock;
     }
 
-    public function apply(string $className = ''): bool
+    public function apply(string $facade = ''): bool
     {
-        if ($className === '' || $className === '0') {
-            $className = $this->classes[0];
+        if ($facade === '' || $facade === '0') {
+            $facade = $this->classes[0];
+        }
+
+        if(!$this->isFacade($facade)) {
+            throw new RuntimeException('Class is not a Laravel Facade.');
         }
 
         if ($this->docBlock === '' || $this->docBlock === '0') {
             throw new RuntimeException('DocBlock is not generated yet. Call make() first.');
         }
 
-        $reflector = new ReflectionClass($className);
+        $reflector = new ReflectionClass($facade);
         $filename = $reflector->getFileName();
         $existingDocBlock = $reflector->getDocComment();
 
