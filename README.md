@@ -7,7 +7,11 @@
 
 > 📖 Streamline your Laravel package development with automatic facade documentation using Docgen for Laravel Facade.
 
-Introducing the Docgen for Laravel packages, the ultimate solution for Laravel package developers. 
+![Docgen](https://user-images.githubusercontent.com/1915268/225490242-13903347-b8a7-40ea-897b-0a5429208cbb.jpg)
+
+## Introduction
+
+Introducing the Docgen for Laravel packages, the ultimate solution for Laravel package developers.
 This heroic package automatically generates documentation for your Laravel package facade, eliminating the tedious task of maintaining it yourself.
 With this package, IDEs will provide you and the developers using your package with method suggestions, making your development journey a breeze.
 
