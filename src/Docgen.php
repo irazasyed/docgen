@@ -196,7 +196,7 @@ final class Docgen
             $facade = $this->classes[0];
         }
 
-        if(!$this->isFacade($facade)) {
+        if (! $this->isFacade($facade)) {
             throw new RuntimeException('Class is not a Laravel Facade.');
         }
 
