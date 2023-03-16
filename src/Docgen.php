@@ -42,8 +42,13 @@ final class Docgen
                 throw new RuntimeException("Class $class does not exist.");
             }
 
-            if ($this->isFacade($class)) {
-                $class = $class::getFacadeRoot()::class;
+            if (class_exists(Facade::class) && $this->isFacade($class)) {
+                $facadeRoot = $class::getFacadeRoot();
+                if (! $facadeRoot) {
+                    throw new RuntimeException("Facade $class does not have a root class.");
+                }
+
+                $class = $facadeRoot::class;
             }
 
             $docBlock .= " * @see \\$class\n";
