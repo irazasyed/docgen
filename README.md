@@ -22,17 +22,29 @@ With this package, IDEs will provide you and the developers using your package w
 You can install the package via composer:
 
 ```bash
-composer require irazasyed/docgen
+composer require irazasyed/docgen --dev
 ```
 
 ## Usage
 
+Create a new file in your package's root directory named `docgen.php` and add the following code:
+
 ```php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
 use Docgen\Docgen;
 
 $facade = \Namespace\To\Facade::class;
 
 Docgen::generate($facade)->apply();
+```
+
+Run the following command to generate the documentation and apply it to the facade:
+
+```bash
+php docgen.php
 ```
 
 ### Advanced Usage
