@@ -36,11 +36,11 @@ PHP
     );
 
 it('throws a runtime exception when trying to apply docblock to non laravel facade class')
-    ->defer(fn() => Docgen::generate(SomeClass::class)->apply())
+    ->defer(fn () => Docgen::generate(SomeClass::class)->apply())
     ->throws(\RuntimeException::class, 'Class is not a Laravel Facade.');
 
 it('throws a runtime exception for non existent class')
-    ->defer(fn() => Docgen::generate('SomeNonExistentClass')->apply())
+    ->defer(fn () => Docgen::generate('SomeNonExistentClass')->apply())
     ->throws(\RuntimeException::class, 'Class SomeNonExistentClass does not exist.');
 
 it('generates docblock and applies it to the facade class', function () {
@@ -56,9 +56,3 @@ it('generates docblock and applies it to the facade class', function () {
 
     expect($mock->apply())->toBeTrue();
 });
-
-
-
-
-
-
