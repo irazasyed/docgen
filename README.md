@@ -35,6 +35,30 @@ $facade = \Namespace\To\Facade::class;
 Docgen::generate($facade)->apply();
 ```
 
+### Advanced Usage
+
+If your Laravel facade is linked to a chain of classes that require documentation, you can provide an array of class names. Additionally, if you want to exclude certain methods from the documentation of a specific class, you can pass an array containing the names of those methods.
+
+To illustrate, consider the following example which demonstrates how to use this approach with the Telegram Bot SDK's Laravel Facade:
+
+```php
+use Docgen\Docgen;
+
+$classes = [
+    \Telegram\Bot\BotsManager::class,
+    \Telegram\Bot\Api::class => [
+        'setContainer',
+        'getWebhookUpdates',
+    ],
+    \Telegram\Bot\Commands\CommandBus::class => [
+        'getTelegram',
+        'setTelegram',
+    ],
+];
+
+Docgen::generate($classes)->apply(\Telegram\Bot\Laravel\Facades\Telegram::class);
+```
+
 ## API
 
 ### `generate(string|array $classes, array $globalExcludedMethods = [])`
