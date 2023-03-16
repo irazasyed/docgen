@@ -1,11 +1,15 @@
 # Docgen for Laravel Facade
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/irazasyed/docgen.svg?style=flat-square)](https://packagist.org/packages/irazasyed/docgen)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/irazasyed/docgen/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/irazasyed/docgen/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/irazasyed/docgen/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/irazasyed/docgen/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/irazasyed/docgen/ci.yml?branch=main&label=tests&style=flat-square)](https://github.com/irazasyed/docgen/actions?query=workflow%3Aci+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/irazasyed/docgen/code-style.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/irazasyed/docgen/actions?query=workflow%3A"Code+Style"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/irazasyed/docgen.svg?style=flat-square)](https://packagist.org/packages/irazasyed/docgen)
 
-> Streamline your Laravel package development with automatic facade documentation using Docgen for Laravel Facade.
+> 📖 Streamline your Laravel package development with automatic facade documentation using Docgen for Laravel Facade.
+
+Introducing the Docgen for Laravel packages, the ultimate solution for Laravel package developers. 
+This heroic package automatically generates documentation for your Laravel package facade, eliminating the tedious task of maintaining it yourself.
+With this package, IDEs will provide you and the developers using your package with method suggestions, making your development journey a breeze.
 
 ## Installation
 
