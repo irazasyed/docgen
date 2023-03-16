@@ -11,8 +11,10 @@
 
 ## Introduction
 
-Introducing the Docgen for Laravel packages, the ultimate solution for Laravel package developers.
+Docgen for Laravel packages, the ultimate solution for Laravel package developers.
+
 This heroic package automatically generates documentation for your Laravel package facade, eliminating the tedious task of maintaining it yourself.
+
 With this package, IDEs will provide you and the developers using your package with method suggestions, making your development journey a breeze.
 
 ## Installation
