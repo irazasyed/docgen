@@ -14,3 +14,4 @@
 /CONTRIBUTING.md    export-ignore
 /SECURITY.md        export-ignore
 /UPGRADING.md       export-ignore
+/rector.php         export-ignore
