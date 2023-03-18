@@ -223,7 +223,7 @@ final class Docgen
 
     private function isFacade(string $class): bool
     {
-        if(! class_exists(Facade::class)) {
+        if (! class_exists(Facade::class)) {
             throw new RuntimeException("Are you sure it's a facade? It doesn't look like one");
         }
 
