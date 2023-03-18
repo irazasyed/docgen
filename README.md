@@ -155,7 +155,6 @@ Apply the generated documentation to the given class name or defaults to the cla
 
 ## TODO
 
-- [ ] Add console command for easy generation.
 - [ ] Add github action to automatically maintain docs.
 
 ## Changelog
