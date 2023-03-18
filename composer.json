@@ -20,7 +20,7 @@
     ],
     "homepage": "https://github.com/irazasyed/docgen",
     "require": {
-        "php": ">=8.1"
+        "php": ">=8.0"
     },
     "require-dev": {
         "illuminate/support": "^10",

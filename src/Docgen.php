@@ -18,8 +18,8 @@ final class Docgen
     private string $docBlock = '';
 
     public function __construct(
-        private readonly array $classes,
-        private readonly array $globalExcludedMethods = []
+        private array $classes,
+        private array $globalExcludedMethods = []
     ) {
     }
 
