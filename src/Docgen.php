@@ -38,11 +38,7 @@ final class Docgen
                 $excludedMethods = [];
             }
 
-            if (! class_exists($class)) {
-                throw new RuntimeException("Class $class does not exist.");
-            }
-
-            if (class_exists(Facade::class) && $this->isFacade($class)) {
+            if ($this->isFacade($class)) {
                 $facadeRoot = $class::getFacadeRoot();
                 if (! $facadeRoot) {
                     throw new RuntimeException("Facade $class does not have a root class.");
@@ -227,6 +223,14 @@ final class Docgen
 
     private function isFacade(string $class): bool
     {
+        if(! class_exists(Facade::class)) {
+            throw new RuntimeException("Are you sure it's a facade? It doesn't look like one");
+        }
+
+        if (! class_exists($class)) {
+            throw new RuntimeException("Class $class does not exist.");
+        }
+
         return in_array(Facade::class, class_parents($class), true);
     }
 }

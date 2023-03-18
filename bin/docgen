@@ -1,0 +1,71 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+// Ensure the script is run from the command line
+if (PHP_SAPI !== 'cli') {
+    throw new RuntimeException('This script must be run from the command line.');
+}
+
+// Find and require the autoload file
+$autoloadPaths = [__DIR__ . '/..', __DIR__ . '/../vendor', __DIR__ . '/../../..'];
+$autoloadPath = '';
+foreach ($autoloadPaths as $path) {
+    $file = $path . '/autoload.php';
+    if (file_exists($file)) {
+        $autoloadPath = $file;
+        break;
+    }
+}
+
+if ($autoloadPath === '') {
+    echo 'Autoload not found.';
+    exit(1);
+}
+
+require $autoloadPath;
+
+// Parse command line options
+$options = getopt('f:c:d', ['facade:', 'config:', 'dry-run']);
+
+// Determine facade to use
+$facade = $options['facade'] ?? $options['f'] ?? null;
+if (!$facade) {
+    $configPath = $options['config'] ?? $options['c'] ?? 'docgen.php';
+    $configPath = realpath(getcwd() . '/' . $configPath);
+
+    if (!$configPath || !is_file($configPath)) {
+        echo 'Docgen config file not found.';
+        exit(1);
+    }
+
+    $config = require $configPath;
+    $facade = $config['facade'] ?? null;
+}
+
+if (!$facade || !class_exists($facade)) {
+    echo 'Facade not found.';
+    exit(1);
+}
+
+// Determine classes to generate docs for
+$classes = $config['classes'] ?? $facade;
+if (!is_array($classes)) {
+    $classes = [$classes];
+}
+
+// Generate docs and apply to facade
+$excludedMethods = $config['excludedMethods'] ?? [];
+$docgen = Docgen\Docgen::generate($classes, $excludedMethods);
+
+if (array_key_exists('dry-run', $options) || array_key_exists('d', $options)) {
+    echo $docgen->getDocBlock() . "\n\n";
+    echo 'Above doc block is NOT applied to the facade.';
+    exit();
+}
+
+$docgen->apply($facade);
+
+echo 'Done!';
+exit();

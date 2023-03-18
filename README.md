@@ -27,48 +27,85 @@ composer require irazasyed/docgen --dev
 
 ## Usage
 
-Create a new file in your package's root directory named `docgen.php` and add the following code:
+There are a number of ways to use the CLI tool.
+
+### Basic
+
+Let's start with the basic usage.
+
+Call the command with the name of the facade:
+
+```bash
+vendor/bin/docgen -f "Namespace\Path\To\Laravel\Facade::class"
+```
+
+### Advanced
+
+Create a new config file in your package's root directory named `docgen.php` and add the following code:
 
 ```php
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+return [
+    'facade' => Namespace\Path\To\Laravel\Facade::class,
 
-use Docgen\Docgen;
-
-$facade = \Namespace\To\Facade::class;
-
-Docgen::generate($facade)->apply();
+    // Optional
+    // Path\To\Class::class => [Excluded Methods Array]
+    'classes' => [],
+    
+    // Global Excluded Methods
+    'excludedMethods' => [],
+];
 ```
 
 Run the following command to generate the documentation and apply it to the facade:
 
 ```bash
-php docgen.php
+vendor/bin/docgen
 ```
 
-### Advanced Usage
+You can also store the config file elsewhere and provide the path using the `-c` or `--config` option.
+
+Example:
+
+```bash
+vendor/bin/docgen -c path/to/docgen.php
+```
+#### Generate Docs for Multiclass Facade
 
 If your Laravel facade is linked to a chain of classes that require documentation, you can provide an array of class names. Additionally, if you want to exclude certain methods from the documentation of a specific class, you can pass an array containing the names of those methods.
 
 To illustrate, consider the following example which demonstrates how to use this approach with the Telegram Bot SDK's Laravel Facade:
 
 ```php
-use Docgen\Docgen;
+<?php
 
-$classes = [
-    \Telegram\Bot\BotsManager::class,
-    \Telegram\Bot\Api::class => [
-        'setContainer',
-        'getWebhookUpdates',
+// docgen.php
+
+return [
+    'facade' => Telegram\Bot\Laravel\Facades\Telegram::class,
+    
+    'classes' => [
+        \Telegram\Bot\BotsManager::class,
+        \Telegram\Bot\Api::class => [
+            'setContainer',
+            'getWebhookUpdates',
+        ],
+        \Telegram\Bot\Commands\CommandBus::class => [
+            'getTelegram',
+            'setTelegram',
+        ],
     ],
-    \Telegram\Bot\Commands\CommandBus::class => [
-        'getTelegram',
-        'setTelegram',
-    ],
+    
+    // Global Excluded Methods
+    'excludedMethods' => [],
 ];
+```
 
-Docgen::generate($classes)->apply(\Telegram\Bot\Laravel\Facades\Telegram::class);
+Call the command to generate and apply the docs.
+
+```bash
+vendor/bin/docgen
 ```
 
 ## API
