@@ -157,6 +157,10 @@ Apply the generated documentation to the given class name or defaults to the cla
 
 - [ ] Add github action to automatically maintain docs.
 
+## Resources
+
+- [Tutorial: How to Resolve Method Not Found Warnings in Laravel Packages using Docgen](https://dev.to/irazasyed/tutorial-how-to-resolve-method-not-found-warnings-in-laravel-packages-using-docgen-2766)
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
