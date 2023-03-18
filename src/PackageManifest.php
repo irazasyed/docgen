@@ -7,6 +7,7 @@ use RuntimeException;
 class PackageManifest
 {
     private string $basePath;
+
     private ?array $composer = null;
 
     public function __construct(string $basePath = '')
@@ -16,7 +17,7 @@ class PackageManifest
 
     public function composer(): array
     {
-        if($this->composer === null) {
+        if ($this->composer === null) {
             $this->composer = $this->resolveComposerJson();
         }
 
@@ -40,8 +41,8 @@ class PackageManifest
 
     private function resolveComposerJson(): array
     {
-        $composer = realpath($this->basePath . '/composer.json');
-        if(!$composer) {
+        $composer = realpath($this->basePath.'/composer.json');
+        if (! $composer) {
             throw new RuntimeException(sprintf('File "%s" does not exist.', $composer));
         }
 
